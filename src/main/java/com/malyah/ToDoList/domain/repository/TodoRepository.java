@@ -1,0 +1,9 @@
+package com.malyah.ToDoList.domain.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.malyah.ToDoList.domain.model.Todo;
+
+public interface TodoRepository extends JpaRepository<Todo, Long>{ 
+
+}

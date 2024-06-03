@@ -34,6 +34,28 @@ public class Todo {
 	private String anexos;
 	private String responsavel;
 	
+	private void setStatus(Status status) {
+		if (getStatus().podeAlterarPara(status) ) {
+			throw new IllegalArgumentException("Status inválido");
+		}
+		this.status = status;
+	}
+	
+	public void emAndamento() {
+		setStatus(Status.EM_ANDAMENTO);
+		setDataEdicao(LocalDateTime.now());
+	}
+	
+	public void concluido() {
+		setStatus(Status.CONCLUIDO);
+		setDataConclusao(LocalDateTime.now());
+	}
+	
+	public void cancelado() {
+		setStatus(Status.CANCELADO);
+		setDataRemocao(LocalDateTime.now());
+	}
+	
 	
 	
 }

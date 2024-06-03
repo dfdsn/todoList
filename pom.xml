@@ -30,6 +30,11 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -72,7 +77,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-				<!-- UNIT TESTS -->
+			<!-- UNIT TESTS -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

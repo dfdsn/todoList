@@ -2,16 +2,25 @@ package com.malyah.ToDoList.api.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.malyah.ToDoList.api.assembler.ToDoAssembler;
 import com.malyah.ToDoList.api.disassembler.TodoDisassembler;
 import com.malyah.ToDoList.api.model.input.TodoInput;
 import com.malyah.ToDoList.api.model.output.TodoView;
+import com.malyah.ToDoList.domain.model.Status;
 import com.malyah.ToDoList.domain.model.Todo;
 import com.malyah.ToDoList.domain.service.TodoService;
 
 @RestController
+@RequestMapping("/todos")
 public class TodoController {
 
 	private ToDoAssembler todoAssembler;
@@ -24,25 +33,31 @@ public class TodoController {
 		this.todoService = todoService;
 	}
 	
+	@GetMapping
 	public List<TodoView> listar() {
 		return todoAssembler.toCollectionModel(todoService.listar());
 	}
 	
-	public TodoView salvar(TodoInput todoInput) {
+	@PostMapping
+	public ResponseEntity<TodoView> salvar(@RequestBody TodoInput todoInput) {
 		Todo todo = todoDisassembler.toDomainObject(todoInput);
-		return todoAssembler.toModel(todoService.salvar(todo));
+		todo.novo();
+		return ResponseEntity.ok(todoAssembler.toModel(todoService.salvar(todo)));
 	}
 	
+	@DeleteMapping("/{todoId}")
 	public void remover(Long todoId) {
 		todoService.excluir(todoId);
 	}
 	
-	public TodoView atualizar(Long todoId, TodoInput todoInput) {
+	@PutMapping("/{todoId}")
+	public TodoView atualizar(Long todoId, @RequestBody TodoInput todoInput) {
 		Todo todoAtual = todoService.buscar(todoId);
 		todoDisassembler.copyToDomainObject(todoInput, todoAtual);
 		return todoAssembler.toModel(todoService.salvar(todoAtual));
 	}
 	
+	@GetMapping("/{todoId}")
 	public TodoView buscarOuFalhar(Long todoId) {
 		return todoAssembler.toModel(todoService.buscar(todoId));
 	}

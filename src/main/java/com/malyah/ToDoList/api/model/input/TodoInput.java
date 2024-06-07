@@ -6,9 +6,11 @@ import com.malyah.ToDoList.domain.model.Categoria;
 import com.malyah.ToDoList.domain.model.Nivel;
 import com.malyah.ToDoList.domain.model.Status;
 
+import lombok.Data;
+
+@Data
 public class TodoInput {
 	private String titulo;
-	private Status status;
 	private String descricao;
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataConclusao;

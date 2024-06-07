@@ -40,6 +40,11 @@ public class Todo {
 		}
 		this.status = status;
 	}
+
+	public void novo() {
+		setStatus(Status.NOVO);
+		setDataCriacao(LocalDateTime.now());
+	}
 	
 	public void emAndamento() {
 		setStatus(Status.EM_ANDAMENTO);

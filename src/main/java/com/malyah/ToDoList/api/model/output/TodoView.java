@@ -6,6 +6,9 @@ import com.malyah.ToDoList.domain.model.Categoria;
 import com.malyah.ToDoList.domain.model.Nivel;
 import com.malyah.ToDoList.domain.model.Status;
 
+import lombok.Data;
+
+@Data
 public class TodoView {
 	private String titulo;
 	private Status status;

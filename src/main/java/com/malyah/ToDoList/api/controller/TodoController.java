@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,19 +47,19 @@ public class TodoController {
 	}
 	
 	@DeleteMapping("/{todoId}")
-	public void remover(Long todoId) {
+	public void remover(@PathVariable Long todoId) {
 		todoService.excluir(todoId);
 	}
 	
 	@PutMapping("/{todoId}")
-	public TodoView atualizar(Long todoId, @RequestBody TodoInput todoInput) {
+	public TodoView atualizar(@PathVariable Long todoId, @RequestBody TodoInput todoInput) {
 		Todo todoAtual = todoService.buscar(todoId);
 		todoDisassembler.copyToDomainObject(todoInput, todoAtual);
 		return todoAssembler.toModel(todoService.salvar(todoAtual));
 	}
 	
 	@GetMapping("/{todoId}")
-	public TodoView buscarOuFalhar(Long todoId) {
+	public TodoView buscarOuFalhar(@PathVariable Long todoId) {
 		return todoAssembler.toModel(todoService.buscar(todoId));
 	}
 	

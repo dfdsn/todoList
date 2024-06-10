@@ -26,7 +26,7 @@ public class ToDoConstants {
 	public static final String ANEXOS = "anexos";
 	public static final String RESPONSAVEL = "responsavel";
 	
-	public static final Todo TODO = new Todo(1L, TITULO, STATUS, DESCRICAO, null, null, null, null, null, PRIORIDADE, CATEGORIA, null, null, null, null);
+	public static final Todo TODO = new Todo(1L, TITULO, STATUS, DESCRICAO, DATA_CRIACAO, null, null, null, null, PRIORIDADE, CATEGORIA, null, null, null, null);
     public static final Todo TODO2 = new Todo(2L, "TITULO 2", STATUS, DESCRICAO, DATA_CRIACAO, DATA_CONCLUSAO, DATA_EDICAO, DATA_REMOCAO, DATA_LIMITE, PRIORIDADE, CATEGORIA, TAGS, ANOTACOES, ANEXOS, RESPONSAVEL);
     public static final Todo TODO3 = new Todo(3L, "TITULO 3", STATUS, DESCRICAO, DATA_CRIACAO, DATA_CONCLUSAO, DATA_EDICAO, DATA_REMOCAO, DATA_LIMITE, PRIORIDADE, CATEGORIA, null, ANOTACOES, ANEXOS, RESPONSAVEL);
 

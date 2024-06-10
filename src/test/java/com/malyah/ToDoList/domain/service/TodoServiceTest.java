@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.malyah.ToDoList.domain.model.Status;
 import com.malyah.ToDoList.domain.model.Todo;
 import com.malyah.ToDoList.domain.repository.TodoRepository;
 
@@ -31,8 +32,14 @@ import com.malyah.ToDoList.domain.repository.TodoRepository;
 		Todo sut = todoService.salvar(TODO);
 		assertThat(sut).isNotNull();
 		assertThat(sut.getId()).isNotNull();
+		assertThat(sut.getStatus().equals(Status.NOVO));
+		assertThat(sut.getTitulo()).as("O título não deve ser nulo ou vazio").isNotNull()
+	    		.satisfies(title -> {assertThat(title).isNotBlank();});
+		assertThat(sut.getDescricao()).as("A descrição não deve ser nula ou vazia").isNotNull()
+        		.satisfies(description -> {assertThat(description).isNotBlank();});
+		assertThat(sut.getDataCriacao()).as("A data de criação é obrigatorio").isNotNull();
+		assertThat(sut.getPrioridade()).as("A prioridade é obrigatória").isNotNull();
 	}
-
 	@Test
 	void excluir_todo_retorna_sucesso() {
 		todoService.excluir(1L);
